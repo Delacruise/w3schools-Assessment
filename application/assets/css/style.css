@@ -1,0 +1,172 @@
+body {
+  background: #fff;
+  font-family: "arial";
+}
+
+header {
+  margin: 20px 10px 10px;
+}
+header .logo {
+  font-family: "Rajdhani", sans-serif;
+  text-decoration: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-size: 37px;
+  letter-spacing: 3px;
+  color: #555555;
+  display: block;
+  position: relative;
+}
+header .logo .dotCom {
+  color: #4CAF50;
+}
+header .tagLine {
+  font-family: "Exo 2", sans-serif;
+  font-size: 18px;
+}
+
+input:focus,
+button:focus {
+  outline: none;
+}
+
+.modallogo {
+  font-family: "Rajdhani", sans-serif;
+  text-decoration: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-size: 37px;
+  letter-spacing: 3px;
+  color: #555555;
+  display: block;
+  position: relative;
+}
+.modallogo .dotCom {
+  color: #4CAF50;
+}
+
+.btn.login {
+  font-family: "Rajdhani", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #4CAF50;
+  color: #ffffff;
+  border: 1px solid #4CAF50;
+  transition: 0.5s ease-out;
+}
+
+.btn.close {
+  font-size: 16px;
+  padding: 10px;
+  font-family: "Rajdhani", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #666666;
+  color: #ffffff;
+  border: 1px solid #666666;
+  text-shadow: none;
+  transition: 0.5s ease-out;
+}
+
+.btn.login:hover,
+.btn.close:hover {
+  transition: 0.5s ease-in;
+  opacity: 0.7;
+}
+
+.menuStrip {
+  position: relative;
+  z-index: 4;
+  background-color: #4CAF50;
+}
+.menuStrip nav ul li a {
+  padding: 16px;
+  color: #ffffff;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-weight: lighter;
+  font-size: 18px;
+  text-transform: uppercase;
+  font-family: "Exo 2", sans-serif;
+  transition: 0.5s ease-out;
+}
+.menuStrip nav ul li a:hover {
+  color: #4CAF50;
+  background-color: #ffffff;
+  transition: 0.5s ease-in;
+}
+.menuStrip .plainGreen {
+  padding: 16px;
+  color: #ffffff;
+  background-color: #4CAF50;
+  border: 0px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-weight: lighter;
+  font-size: 18px;
+  text-transform: uppercase;
+  font-family: "Exo 2", sans-serif;
+  transition: 0.5s ease-out;
+}
+.menuStrip .plainGreen:hover {
+  color: #4CAF50;
+  background-color: #ffffff;
+  cursor: pointer;
+  transition: 0.5s ease-in;
+}
+.menuStrip .dropdown-menu {
+  color: #ffffff;
+  background-color: #4CAF50;
+}
+.menuStrip .dropdown-menu a.dropdown-item {
+  font-size: 14px;
+}
+
+.middel {
+  position: absolute;
+  top: 50%;
+  bottom: 50%;
+}
+
+.fourofour {
+  font-size: 200px;
+  color: #4CAF50;
+  text-align: center;
+  font-family: "Rajdhani", sans-serif;
+}
+
+.speach {
+  font-family: "Exo 2", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-weight: bold;
+  font-size: 26px;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.codeInut {
+  background-color: #333333;
+  color: #ffffff;
+  height: 100px;
+}
+
+.formCard {
+  padding: 20px;
+  margin-top: 20px;
+}
+
+footer {
+  background-color: #666666;
+  color: #ffffff;
+  padding: 20px;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 60px;
+  font-size: 14px;
+}
+
+/*# sourceMappingURL=style.css.map */

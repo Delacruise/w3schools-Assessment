@@ -1,0 +1,27 @@
+{
+  "name": "w3schools",
+  "version": "1.0.0",
+  "description": "Assessment",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Luke Daffue",
+  "license": "ISC",
+  "dependencies": {
+    "ajax": "0.0.4",
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4",
+    "express-flash": "0.0.2",
+    "express-handlebars": "^3.0.0",
+    "http-server": "^0.11.1",
+    "jquery": "^3.3.1",
+    "jsdom": "^13.1.0",
+    "mongoose": "^5.4.4",
+    "request": "^2.88.0",
+    "xmlhttprequest": "^1.8.0"
+  },
+  "devDependencies": {
+    "mocha": "^5.2.0"
+  }
+}
