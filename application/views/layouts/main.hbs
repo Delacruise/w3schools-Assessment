@@ -1,107 +1,100 @@
 <!doctype html>
 <html>
-
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>
-        {{ title }}
-    </title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="./assets/css/style.css">
-    <link href="https://fonts.googleapis.com/css?family=Rajdhani:700" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Exo+2:200" rel="stylesheet">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>
+    {{ title }}
+  </title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" href="./assets/css/style.css">
+  <link href="https://fonts.googleapis.com/css?family=Rajdhani:700" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Exo+2:200" rel="stylesheet">
 </head>
 
 <body>
-    <!-- Modal -->
-    <div class="modal fade" id="adminLogin" tabindex="-1" role="dialog" aria-labelledby="adminLoginLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <div class="modallogo">admin<span class="dotCom">.login</span></div>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="container" style="padding-top:10px;">
-                  <form>
-                    <div class="form-group">
-                      <input type="text" class="form-control" id="formGroupExampleInput" placeholder="username">
-                    </div>
-                    <div class="form-group">
-                      <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="password">
-                    </div>
-                  </form>
-                </div>
-
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-primary login" data-dismiss="modal">Login</button>
-                </div>
-            </div>
+  <!-- MODALS - ADMIN LOGIN-->
+  <div class="modal fade" id="adminLogin" tabindex="-1" role="dialog" aria-labelledby="adminLoginLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <div class="modallogo">admin<span class="dotCom">.login</span></div>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
         </div>
+        <div class="container" style="padding-top:10px;">
+          <form>
+            <div class="form-group">
+              <input type="text" class="form-control" id="formGroupExampleInput" placeholder="username">
+            </div>
+            <div class="form-group">
+              <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="password">
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary login" data-dismiss="modal">Login</button>
+        </div>
+      </div>
     </div>
-    <header>
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-6">
-                    <div class="logo">w3schools<span class="dotCom">.com</span></div>
-                </div>
-                <div class="col-6">
-                    <div class="tagLine float-right">THE WORLD'S LARGEST WEB DEVELOPER SITE</div>
-                </div>
-            </div>
+  </div>
+  <header>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-6">
+          <div class="logo"><a href="/" >w3schools<span class="dotCom">.com</span></a></div>
         </div>
-    </header>
-    <section class="menuStrip">
-        <div class="row">
-            <div class="col-11">
-                <nav>
-                    <ul class="nav">
-                        <li class="nav-item dropdown">
-                          <a class="nav-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="#">Languages</a>
-                          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="/viewlanguage">View All</a>
-                            <a class="dropdown-item" href="/newlanguage">New</a>
-                            <a class="dropdown-item" href="/updatelanguage">Update</a>
-                            <a class="dropdown-item" href="/deletelanguage">Delete</a>
-                          </div>
-                        </li>
-                        <li class="nav-item dropdown">
-                          <a class="nav-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"  href="#">Lessons</a> <span class="caret"></span>
-                          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="/viewlesson">View All</a>
-                            <a class="dropdown-item" href="/newlesson">New</a>
-                            <a class="dropdown-item" href="/updatelesson">Update</a>
-                            <a class="dropdown-item" href="/deletelesson">Delete</a>
-                          </div>
-                        </li>
-                        <li class="nav-item dropdown">
-                          <a class="nav-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"  href="#">Examples</a> <span class="caret"></span>
-                          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="/viewexample">View All</a>
-                            <a class="dropdown-item" href="/newexample">New</a>
-                            <a class="dropdown-item" href="/updateexample">Update</a>
-                            <a class="dropdown-item" href="/deleteexample">Delete</a>
-                          </div>
-                        </li>
-                    </ul>
-                </nav>
-            </div>
-            <div class="col-1 float-right">
-                <button type="button" class="plainGreen" data-toggle="modal" data-target="#adminLogin">Admin</button>
-            </div>
+        <div class="col-6">
+          <div class="tagLine float-right">THE WORLD'S LARGEST WEB DEVELOPER SITE</div>
         </div>
-    </section>
-    <section class="container-fluid">
-      {{{ body }}}
-    </section>
-    <footer>
-      Quick build by Luke Daffue
-    </footer>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+      </div>
+    </div>
+  </header>
+  <section class="menuStrip">
+    <div class="row">
+      <div class="col-11">
+        <nav>
+          <ul class="nav">
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="#">Languages</a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="/viewlanguage">View All</a>
+                <a class="dropdown-item" href="/newlanguage">New</a>
+              </div>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="#">Lessons</a> <span class="caret"></span>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="/viewlesson">View All</a>
+                <a class="dropdown-item" href="/newlesson">New</a>
+              </div>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="#">Examples</a> <span class="caret"></span>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="/viewexample">View All</a>
+                <a class="dropdown-item" href="/newexample">New</a>
+              </div>
+            </li>
+          </ul>
+        </nav>
+      </div>
+      <div class="col-1 float-right">
+        <button type="button" class="plainGreen" data-toggle="modal" data-target="#adminLogin">Admin</button>
+      </div>
+    </div>
+  </section>
+  <section class="container-fluid">
+    {{{ body }}}
+  </section>
+  <footer>
+    Quick build by Luke Daffue
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </body>
 
 </html>

@@ -1,9 +1,9 @@
 <div class="container col-md-12 border rounded formCard">
   <h2>
-    View languages
+    Update examples
   </h2>
   <div class="card-deck">
-    {{#each languagesDD}}
+    {{#each examples}}
       <div class="card">
         <div class="card-body">
           <h4 class="card-title">{{ this.name }}</h4>
@@ -12,7 +12,7 @@
           <p class="card-text">
             {{ this.code }}
           </p>
-          <a href="/updatelanguage" class="card-link">Update</a>
+          <a href="/updateexample" class="card-link">Update</a>
           <button type="button" id="deleteEexmaple" onclick="passData()" data-id={{ this._id }} data-name={{ this.name }} data-toggle="modal" data-target="#deleteModal">Delete</button>
         </div>
       </div>
@@ -21,7 +21,7 @@
 </div>
 <script>
   function passData() {
-    document.getElementById("deleteName").innerHTML = document.getElementById("deleteEexmaple").getAttribute('data-name');
+    document.getElementByClassName("deleteName").innerHTML = document.getElementById("deleteEexmaple").getAttribute('data-name');
     document.getElementById("deleteID").innerHTML = document.getElementById("deleteEexmaple").getAttribute('data-id');
   }
 </script>

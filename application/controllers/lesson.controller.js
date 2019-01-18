@@ -52,3 +52,17 @@ exports.lesson_delete = function (req, res) {
         res.send('Deleted lesson successfully!');
     })
 };
+
+function deleteTheItem() {
+  let goneItemId = document.getElementById("deleteItem").getAttribute('data-idDelete');
+  xhr.open('DELETE', 'http://localhost:81/lessons/' + goneItemId + '/delete');
+  xhr.onload = function() {
+      if (xhr.status === 200) {
+          lessons = xhr.responseText;
+          lessons = JSON.parse(lessons);
+      } else {
+          console.log('Request failed.  Returned status of ' + xhr.status);
+      }
+  };
+  xhr.send();
+}

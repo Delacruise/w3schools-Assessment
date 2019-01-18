@@ -124,6 +124,11 @@ button:focus {
   font-size: 14px;
 }
 
+.logo a {
+  text-decoration: none;
+  color: #666666;
+}
+
 .middel {
   position: absolute;
   top: 50%;
