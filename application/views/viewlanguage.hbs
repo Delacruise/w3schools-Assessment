@@ -12,8 +12,10 @@
           <p class="card-text">
             {{ this.code }}
           </p>
-          <a href="/updatelanguage" class="card-link">Update</a>
-          <button type="button" id="deleteEexmaple" onclick="passData()" data-id={{ this._id }} data-name={{ this.name }} data-toggle="modal" data-target="#deleteModal">Delete</button>
+        </div>
+        <div class="btnGroup">
+          <a href="/updatelanguage" class="card-link secondary-button">Update</a>
+          <button type="button" class="primary-button" onclick="passData()" data-id={{ this._id }} data-name={{ this.name }} data-toggle="modal" data-target="#deleteModal">Delete</button>
         </div>
       </div>
     {{/each}}

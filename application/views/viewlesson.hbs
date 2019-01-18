@@ -25,8 +25,8 @@
   </h2>
   <div class="card-deck">
     {{#each lessons}}
-            <div class="card">
-      <div class="card-body">
+      <div class="card">
+        <div class="card-body">
           <h4 class="card-title">{{ this.name }}</h4>
           <h6 class="card-subtitle mb-2 text-muted">{{ this.language }}</h6>
           <label>Descirption</label>
@@ -37,8 +37,10 @@
           <p class="card-text">
             {{ this.details }}
           </p>
-          <a href="/updatelesson" class="card-link">Update</a>
-          <button type="button" class="deleteExample" onclick="passData(this)" data-id={{this._id}} data-toggle="modal" data-target="#deleteModal">Delete</button>
+        </div>
+        <div class="btnGroup">
+          <a href="/updatelesson" class="card-link secondary-button">Update</a>
+          <button type="button" class="deleteExample primary-button" onclick="passData(this)" data-id={{this._id}} data-toggle="modal" data-target="#deleteModal">Delete</button>
         </div>
       </div>
     {{/each}}
@@ -47,6 +49,6 @@
 <script>
   function passData(el) {
     var tt = el.attributes[3].nodeValue;
-    document.getElementById("deleteItem").setAttribute('data-idDelete',tt);
+    document.getElementById("deleteItem").setAttribute('data-idDelete', tt);
   }
 </script>

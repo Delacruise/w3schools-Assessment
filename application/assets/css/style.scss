@@ -3,42 +3,44 @@ $ff: 'arial';
 $menufont: 'Exo 2', sans-serif;
 $logofont: 'Rajdhani', sans-serif;
 
-
 body {
-    background: $bg;
-    font-family: $ff;
+  background: $bg;
+  font-family: $ff;
 }
-
 //* HEADER *//
+
 header {
-    margin: 20px 10px 10px;
-    .logo {
-      font-family: $logofont;
-      text-decoration: none;
-      line-height: 1;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-      font-size: 37px;
-      letter-spacing: 3px;
-      color: #555555;
-      display: block;
-      position: relative;
-      .dotCom {
-         color: $primC;
-      }
+  margin: 20px 10px 10px;
+
+  .logo {
+    font-family: $logofont;
+    text-decoration: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-size: 37px;
+    letter-spacing: 3px;
+    color: #555555;
+    display: block;
+    position: relative;
+
+    .dotCom {
+      color: $primC;
     }
-    .tagLine {
-      font-family: $menufont;
-      font-size: 18px;
-     }
+  }
+
+  .tagLine {
+    font-family: $menufont;
+    font-size: 18px;
+  }
 }
 
-input:focus,
-button:focus {
-    outline:none;
+button:focus,
+input:focus {
+  outline: none;
 }
-
 //** MODAL **//
+
 .modallogo {
   font-family: $logofont;
   text-decoration: none;
@@ -50,12 +52,13 @@ button:focus {
   color: #555555;
   display: block;
   position: relative;
+
   .dotCom {
-     color: $primC;
+    color: $primC;
   }
 }
-
 //** BUTTONS **//
+
 .btn.login {
   font-family: $logofont;
   -webkit-font-smoothing: antialiased;
@@ -63,7 +66,7 @@ button:focus {
   background-color: $primC;
   color: $secC;
   border: 1px solid $primC;
-  transition: .5s ease-out;
+  transition: 0.5s ease-out;
 }
 
 .btn.close {
@@ -76,21 +79,57 @@ button:focus {
   color: $secC;
   border: 1px solid $thirdC;
   text-shadow: none;
-  transition: .5s ease-out;
+  transition: 0.5s ease-out;
 }
 
-.btn.login:hover,
-.btn.close:hover
- {
-  transition: .5s ease-in;
+.btn.close:hover,
+.btn.login:hover {
+  transition: 0.5s ease-in;
   opacity: 0.7;
 }
 
+.primary-button {
+  font-family: $logofont;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  border: none;
+  background-color: $primC;
+  color: $secC;
+  padding: 4px 5px;
+  border-radius: 2px;
+  cursor: pointer;
+  transition: 0.5s ease-out;
+}
+
+a.secondary-button {
+  text-decoration: none;
+  font-family: $logofont;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: $thirdC;
+  color: $secC;
+  padding: 5px;
+  border-radius: 2px;
+  cursor: pointer;
+  transition: 0.5s ease-out;
+}
+
+.primary-button:hover,
+a.secondary-button:hover {
+  opacity: 0.8;
+  transition: 0.5s ease-out;
+}
+
+.btnGroup {
+  margin: 20px;
+}
 //** MENU **//
+
 .menuStrip {
   position: relative;
   z-index: 4;
   background-color: $primC;
+
   nav ul li a {
     padding: 16px;
     color: $secC;
@@ -100,47 +139,52 @@ button:focus {
     font-size: 18px;
     text-transform: uppercase;
     font-family: $menufont;
-    transition: .5s ease-out;
+    transition: 0.5s ease-out;
   }
+
   nav ul li a:hover {
     color: $primC;
     background-color: $secC;
-    transition: .5s ease-in;
+    transition: 0.5s ease-in;
   }
+
   .plainGreen {
     padding: 16px;
     color: $secC;
     background-color: $primC;
-    border: 0px;
+    border: 0;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     font-weight: lighter;
     font-size: 18px;
     text-transform: uppercase;
     font-family: $menufont;
-    transition: .5s ease-out;
+    transition: 0.5s ease-out;
   }
+
   .plainGreen:hover {
     color: $primC;
     background-color: $secC;
     cursor: pointer;
-    transition: .5s ease-in;
+    transition: 0.5s ease-in;
   }
 
   .dropdown-menu {
     color: $secC;
     background-color: $primC;
+
     a.dropdown-item {
-      font-size: 14px
+      font-size: 14px;
     }
   }
 }
+
 .logo a {
   text-decoration: none;
   color: $thirdC;
 }
-
 //** 404 **//
+
 .middel {
   position: absolute;
   top: 50%;
@@ -162,10 +206,9 @@ button:focus {
   font-size: 26px;
   text-align: center;
   text-transform: uppercase;
-
 }
-
 //** FORMS **//
+
 .codeInut {
   background-color: $codeBg;
   color: $secC;
@@ -174,17 +217,17 @@ button:focus {
 
 .formCard {
   padding: 20px;
-  margin-top:20px;
+  margin-top: 20px;
 }
-
 //* FOOTER *//
+
 footer {
   background-color: $thirdC;
   color: $secC;
   padding: 20px;
-  position:absolute;
-  bottom:0;
-  width:100%;
-  height:60px;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 60px;
   font-size: 14px;
 }

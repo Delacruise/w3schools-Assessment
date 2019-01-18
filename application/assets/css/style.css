@@ -26,8 +26,8 @@ header .tagLine {
   font-size: 18px;
 }
 
-input:focus,
-button:focus {
+button:focus,
+input:focus {
   outline: none;
 }
 
@@ -70,10 +70,46 @@ button:focus {
   transition: 0.5s ease-out;
 }
 
-.btn.login:hover,
-.btn.close:hover {
+.btn.close:hover,
+.btn.login:hover {
   transition: 0.5s ease-in;
   opacity: 0.7;
+}
+
+.primary-button {
+  font-family: "Rajdhani", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  border: none;
+  background-color: #4CAF50;
+  color: #ffffff;
+  padding: 4px 5px;
+  border-radius: 2px;
+  cursor: pointer;
+  transition: 0.5s ease-out;
+}
+
+a.secondary-button {
+  text-decoration: none;
+  font-family: "Rajdhani", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #666666;
+  color: #ffffff;
+  padding: 5px;
+  border-radius: 2px;
+  cursor: pointer;
+  transition: 0.5s ease-out;
+}
+
+.primary-button:hover,
+a.secondary-button:hover {
+  opacity: 0.8;
+  transition: 0.5s ease-out;
+}
+
+.btnGroup {
+  margin: 20px;
 }
 
 .menuStrip {
@@ -101,7 +137,7 @@ button:focus {
   padding: 16px;
   color: #ffffff;
   background-color: #4CAF50;
-  border: 0px;
+  border: 0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-weight: lighter;
