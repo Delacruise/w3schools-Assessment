@@ -83,16 +83,6 @@ app.use(function (req, res, next) {
 
 let languagesDD = [];
 
-app.get('/lesson', function(req, res) {
-  if (req.accepts('html')) {
-    res.render('index', {
-      url: req.url,
-      title: "w3school Assessment"
-    });
-    return;
-  }
-});
-
 app.get('/newlanguage', function(req, res) {
   res.render('newlanguage');
 });
@@ -139,14 +129,6 @@ app.get('/updatelesson', function(req, res) {
     title: "Lessons",
     languagesDD: languagesDD
   });
-  });
-});
-app.get('/deletelesson', function(req, res) {
-  console.log("Inside delete function");
-  deleteTheItem();
-  res.render('delete', {
-    url: req.url,
-    title: "Lessons"
   });
 });
 
@@ -236,19 +218,6 @@ function getExamples() {
   xhr.send();
 }
 
-function deleteTheItem() {
-  let goneItemId = document.getElementById("deleteItem").getAttribute('data-idDelete');
-  xhr.open('DELETE', 'http://localhost:81/lessons/' + goneItemId + '/delete');
-  xhr.onload = function() {
-    if (xhr.status === 200) {
-      lessons = xhr.responseText;
-      lessons = JSON.parse(lessons);
-    } else {
-      console.log('Request failed.  Returned status of ' + xhr.status);
-    }
-  };
-  xhr.send();
-}
 
 //** CONFIGURATION **//
 let port = 81;

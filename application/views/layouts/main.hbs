@@ -13,7 +13,27 @@
   <link href="https://fonts.googleapis.com/css?family=Exo+2:200" rel="stylesheet">
 </head>
 
-<body>
+<body><!-- MODALS - DELETE-->
+  <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <div class="modallogo">Delete<span class="dotCom"> Item</span></div>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="container" style="padding:10px;">
+          Are you sure you want to delete this item?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" id="deleteItem" data-idDelete="" href="/" class="btn btn-danger" data-dismiss="modal">Delete</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <header>
     <div class="container-fluid">
       <div class="row">
@@ -75,7 +95,7 @@
       </div>
     </div>
   </section>
-  <section class="container" style="margin: 20px auto;">
+  <section class="container" style="margin: 20px auto 60px; overflow:hidden">
     {{{ body }}}
   </section>
   <footer>

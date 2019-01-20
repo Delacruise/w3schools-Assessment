@@ -1,6 +1,7 @@
 const Language = require('../models/language.model');
 
 exports.language_create = function (req, res) {
+      console.log("inside create language");
     let language = new Language(
         {
             name: req.body.name,
@@ -38,8 +39,9 @@ exports.language_update = function (req, res) {
 };
 
 exports.language_delete = function (req, res) {
-    Language.findByIdAndRemove(req.params.id, function (err) {
+    console.log("inside delete");
+    Language.findOneAndDelete(req.params.id, function (err) {
         if (err) return (err);
-        res.send('Deleted language successfully!');
+        res.redirect('/viewlanguage');
     })
 };

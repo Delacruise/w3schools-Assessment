@@ -1,59 +1,29 @@
-<!-- MODALS - DELETE-->
-<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <div class="modallogo">Delete<span class="dotCom"> Item</span></div>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="container" style="padding:10px;">
-        Are you sure you want to delete this item?
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <a type="button" id="deleteItem" data-idDelete="" href="/" class="btn btn-primary" data-dismiss="modal">Delete</a>
+<h1 class="display-4">Lessons</h1>
+<div class="card-columns">
+  {{#each lessons}}
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title">{{ this.name }}</h4>
+        <h6 class="card-subtitle mb-2 text-muted">Language: {{ this.language }}</h6>
+        <h6 class="card-text">
+          {{ this.description }}
+        </h6>
+        <h6 class="alert alert-info">
+          {{ this.details }}
+        </h6>
+        <div class="btnGroup">
+          <a href="/updatelesson" class="btn btn-info">Update</a>
+          <a href="#" class="btn btn-danger" onclick="passData()" data-id={{ this._id }} data-name={{ this.name }} data-toggle="modal" data-target="#deleteModal">Delete</a>
+        </div>
       </div>
     </div>
-  </div>
+  {{/each}}
 </div>
 
-<div class="container  border rounded ">
-  <h2>
-    View lessons
-  </h2>
-<div class="card-columns">
-    {{#each lessons}}
-      <div class="card">
-        <div class="card-body">
-          <h4 class="card-title">{{ this.name }}</h4>
-          <h6 class="card-subtitle mb-2 text-muted">{{ this.language }}</h6>
-          <label>Descirption</label>
-          <p class="card-text">
-            {{ this.description }}
-          </p>
-          <label>Details</label>
-          <p class="card-text">
-            {{ this.details }}
-          </p>
-        </div>
-        <div class="btnGroup">
-          <a href="/updatelesson" onclick="passUpdateData(this)" data-id={{this._id}} class="card-link secondary-button">Update</a>
-          <button type="button" class="deleteExample primary-button" onclick="passDeleteData(this)" data-id={{this._id}} data-toggle="modal" data-target="#deleteModal">Delete</button>
-        </div>
-      </div>
-    {{/each}}
-</div>
-</div>
 <script>
   function passDeleteData(el) {
     let delItem = el.attributes[3].nodeValue;
     document.getElementById("deleteItem").setAttribute('data-idDelete', delItem);
     document.cookie = "deleteId=" + delItem;
-  }
-  function passUpdateData(el) {
-    let updateItem = el.attributes[3].nodeValue;
-    document.getElementById("deleteItem").setAttribute('data-idDelete', delItem);
   }
 </script>

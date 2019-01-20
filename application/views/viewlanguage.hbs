@@ -1,26 +1,19 @@
-<div class="container col-md-12 border rounded formCard">
-  <h2>
-    View languages
-  </h2>
-  <div class="card-columns">
-    {{#each languagesDD}}
-      <div class="card">
-        <div class="card-body">
-          <h4 class="card-title">{{ this.name }}</h4>
-          <h6 class="card-subtitle mb-2 text-muted">{{ this.language }}</h6>
-          <label>Example code</label>
-          <p class="card-text">
-            {{ this.code }}
-          </p>
-        </div>
+<h1 class="display-4">Languages</h1>
+<div class="card-columns">
+  {{#each languagesDD}}
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title">{{ this.name }}</h4>
+        <h6 class="card-subtitle mb-2 text-muted">{{ this.introduction }}</h6>
         <div class="btnGroup">
-          <a href="/updatelanguage" class="card-link secondary-button">Update</a>
-          <button type="button" class="primary-button" onclick="passData()" data-id={{ this._id }} data-name={{ this.name }} data-toggle="modal" data-target="#deleteModal">Delete</button>
+          <a href="/updatelanguage" class="btn btn-info">Update</a>
+          <a href="#" class="btn btn-danger" onclick="passData()" data-id={{ this._id }} data-name={{ this.name }} data-toggle="modal" data-target="#deleteModal">Delete</a>
         </div>
       </div>
-    {{/each}}
-  </div>
+    </div>
+  {{/each}}
 </div>
+
 <script>
   function passData() {
     document.getElementById("deleteName").innerHTML = document.getElementById("deleteEexmaple").getAttribute('data-name');
