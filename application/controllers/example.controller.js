@@ -13,7 +13,7 @@ exports.example_create = function (req, res) {
         if (err) {
             return (err);
         }
-        res.send('Example Created successfully')
+        res.redirect('/viewexample');
     })
 };
 

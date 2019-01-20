@@ -20,7 +20,7 @@ exports.lesson_create = function (req, res) {
             return (err);
         }
         console.log("inside save");
-        res.render('lesson');
+        res.redirect('/viewlesson');
     })
 };
 
@@ -42,7 +42,7 @@ exports.lesson_details = function (req, res) {
 exports.lesson_update = function (req, res) {
     Lesson.findByIdAndUpdate(req.params.id, {$set: req.body}, function (err, lesson) {
         if (err) return (err);
-        res.send('Lesson udpated.');
+        res.redirect('/viewlesson');
     });
 };
 

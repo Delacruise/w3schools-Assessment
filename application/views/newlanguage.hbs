@@ -1,20 +1,20 @@
-<div class="container col-md-5 border rounded formCard">
+<div class="container col-md-5 border rounded formCard" id="langaugeCreate">
   <h2>
-    Create a new programing language.
+    Create new language.
   </h2>
-  <form action="http://localhost:81/langauges/create" method="post">
+  <form action="http://localhost:81/languages/create" method="post">
     <fieldset >
       <div class="form-group">
         <label for="disabledTextInput">Name</label>
-        <input required type="text" id="disabledTextInput" class="form-control" placeholder="Please insert a name">
+        <input required type="text" name="name" class="form-control" placeholder="Please insert a name">
       </div>
       <div class="form-group">
         <label for="disabledTextInput">Title</label>
-        <input required type="text" id="disabledTextInput" class="form-control" placeholder="Please insert a title">
+        <input required type="text" name="title" class="form-control" placeholder="Please insert a title">
       </div>
       <div class="form-group">
         <label for="disabledTextInput">introduction</label>
-        <textarea required type="text" id="disabledTextInput" class="form-control" placeholder="Please insert a introduction"></textarea>
+        <textarea required type="text" name="introduction" class="form-control" placeholder="Please insert a introduction"></textarea>
       </div>
        <button type="submit" class="btn btn-primary">Submit</button>
     </fieldset>

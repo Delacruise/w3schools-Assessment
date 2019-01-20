@@ -9,21 +9,21 @@
         </button>
       </div>
       <div class="container" style="padding:10px;">
-        Are you sure you want to delete this item - <span id="deleteName"></span>?
+        Are you sure you want to delete this item?
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" id="deleteItem" data-idDelete="" onclick="deleteTheItem()" class="btn btn-primary" data-dismiss="modal">Delete</button>
+        <a type="button" id="deleteItem" data-idDelete="" href="/" class="btn btn-primary" data-dismiss="modal">Delete</a>
       </div>
     </div>
   </div>
 </div>
 
-<div class="container col-md-12 border rounded formCard">
+<div class="container  border rounded ">
   <h2>
     View lessons
   </h2>
-  <div class="card-deck">
+<div class="card-columns">
     {{#each lessons}}
       <div class="card">
         <div class="card-body">
@@ -39,16 +39,21 @@
           </p>
         </div>
         <div class="btnGroup">
-          <a href="/updatelesson" class="card-link secondary-button">Update</a>
-          <button type="button" class="deleteExample primary-button" onclick="passData(this)" data-id={{this._id}} data-toggle="modal" data-target="#deleteModal">Delete</button>
+          <a href="/updatelesson" onclick="passUpdateData(this)" data-id={{this._id}} class="card-link secondary-button">Update</a>
+          <button type="button" class="deleteExample primary-button" onclick="passDeleteData(this)" data-id={{this._id}} data-toggle="modal" data-target="#deleteModal">Delete</button>
         </div>
       </div>
     {{/each}}
-  </div>
+</div>
 </div>
 <script>
-  function passData(el) {
-    var tt = el.attributes[3].nodeValue;
-    document.getElementById("deleteItem").setAttribute('data-idDelete', tt);
+  function passDeleteData(el) {
+    let delItem = el.attributes[3].nodeValue;
+    document.getElementById("deleteItem").setAttribute('data-idDelete', delItem);
+    document.cookie = "deleteId=" + delItem;
+  }
+  function passUpdateData(el) {
+    let updateItem = el.attributes[3].nodeValue;
+    document.getElementById("deleteItem").setAttribute('data-idDelete', delItem);
   }
 </script>

@@ -4,6 +4,41 @@ const morgan = require('morgan');
 const mongoose = require('mongoose');
 const hbs = require('express-handlebars');
 const path = require('path');
+
+//** AUTH0 - BEGIN**//
+const session = require('express-session');
+const passport = require('passport');
+const Auth0Strategy = require('passport-auth0');
+
+const authVar = {
+  domain: 'w3school-assesment.eu.auth0.com',
+  clientID: 'NsMiNyhvTME1GylJNizfm12J78QOIqD7',
+  clientSecret: 'vXq0eMpHYMPzkSwN_a8gVoCL4NiyHGiZCCeRZVf7jvbvbAaB9XGMboMovZ3VNZEP',
+  callbackURL: 'http://localhost:81/callback'
+}
+
+const strategy = new Auth0Strategy (
+  {
+    domain: 'w3school-assesment.eu.auth0.com',
+    clientID: 'NsMiNyhvTME1GylJNizfm12J78QOIqD7',
+    clientSecret: 'vXq0eMpHYMPzkSwN_a8gVoCL4NiyHGiZCCeRZVf7jvbvbAaB9XGMboMovZ3VNZEP',
+    callbackURL: 'http://localhost:81/callback'
+  },
+  function(accessToken, refreshToken, extraParam, profile, done) {
+    return done(null, profile);
+  }
+)
+
+passport.use(strategy);
+
+passport.serializeUser(function(user, done){
+  done(null, user);
+});
+
+passport.deserializeUser(function(user, done){
+  done(null, user);
+});
+//** AUTH0 - END**//
 const jwt = require('jsonwebtoken');
 const XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 const xhr = new XMLHttpRequest();
@@ -13,9 +48,6 @@ const User = require('./models/user');
 const lesson = require('./routes/lesson.route'); // Imports routes for the lesson
 const example = require('./routes/example.route'); // Imports routes for the example
 const language = require('./routes/language.route'); // Imports routes for the language
-
-let languagesDD = [];
-
 const app = express();
 
 app.engine('hbs', hbs({
@@ -26,16 +58,31 @@ app.engine('hbs', hbs({
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
 
-//** ROUTING **//
-app.get('/', function(req, res) {
-  if (req.accepts('html')) {
-    res.render('index', {
-      url: req.url,
-      title: "w3school Assessment"
-    });
-    return;
+app.use(
+  session({
+    secret: 'your_secret_key',
+    resave: true,
+    saveUninitialized: true
+  })
+);
+app.use(passport.initialize());
+app.use(passport.session());
+
+app.use(function (req, res, next) {
+  res.locals.loggedIn = false;
+
+  if(req.session.passport && typeof req.session.passport.user != 'undefined') {
+    res.locals.loggedIn = true;
   }
+
+  next();
 });
+
+//** ROUTING **//
+
+
+let languagesDD = [];
+
 app.get('/lesson', function(req, res) {
   if (req.accepts('html')) {
     res.render('index', {
@@ -45,15 +92,17 @@ app.get('/lesson', function(req, res) {
     return;
   }
 });
+
 app.get('/newlanguage', function(req, res) {
   res.render('newlanguage');
 });
 app.get('/viewlanguage', function(req, res) {
-  getLanguage();
-  res.render('viewlanguage', {
-    url: req.url,
-    title: "Languages",
-    languagesDD: languagesDD
+  getLanguage().then(function(){
+    res.render('viewlanguage', {
+      url: req.url,
+      title: "Languages",
+      languagesDD: languagesDD
+    });
   });
 });
 app.get('/updatelanguage', function(req, res) {
@@ -65,7 +114,7 @@ app.get('/updatelanguage', function(req, res) {
 });
 
 app.get('/newlesson', function(req, res) {
-  //getLanguage();
+  getLanguage();
   res.render('newlesson', {
     url: req.url,
     title: "Lessons",
@@ -73,18 +122,23 @@ app.get('/newlesson', function(req, res) {
   });
 });
 app.get('/viewlesson', function(req, res) {
-  getLessons();
-  res.render('viewlesson', {
-    url: req.url,
-    title: "Lessons",
-    lessons: lessons
+  getLessons().then(function(){
+    res.render('viewlesson', {
+      url: req.url,
+      title: "Lessons",
+      lessons: lessons
+    });
   });
 });
 app.get('/updatelesson', function(req, res) {
-  //getIndividualExample();
+  getLanguage().then(function(){
+  //getIndividualLesson();
+  console.log("lesson :" + lesson);
   res.render('updatelesson', {
     url: req.url,
-    title: "Lessons"
+    title: "Lessons",
+    languagesDD: languagesDD
+  });
   });
 });
 app.get('/deletelesson', function(req, res) {
@@ -119,28 +173,10 @@ app.get('/updateexample', function(req, res) {
     title: "Examples"
   });
 });
-app.get('/setup', function(req, res) {
-  var newUserData = new User({
-    name: 'Luke Daffue',
-    password: 'password',
-    admin: true
-  });
-
-  // save the sample user
-  newUserData.save(function(err) {
-    if (err) throw err;
-
-    console.log('User saved successfully');
-    res.json({
-      success: true
-    });
-  });
-});
-
-
 
 //** GET LANGUAGES **//
 function getLanguage() {
+  return new Promise(function(resolve, reject) {
   xhr.open('GET', 'http://localhost:81/languages/get');
   xhr.onload = function() {
     if (xhr.status === 200) {
@@ -150,17 +186,34 @@ function getLanguage() {
       console.log('Request failed.  Returned status of ' + xhr.status);
     }
   };
-  xhr.send();
+  resolve(xhr.send());
+});
 }
 //** GET LESSONS **//
 let lessons = [];
 
 function getLessons() {
-  xhr.open('GET', 'http://localhost:81/lessons/get');
+  return new Promise(function(resolve, reject) {
+    xhr.open('GET', 'http://localhost:81/lessons/get');
+    xhr.onload = function() {
+      if (xhr.status === 200) {
+        lessons = xhr.responseText;
+        lessons = JSON.parse(lessons);
+      } else {
+        console.log('Request failed.  Returned status of ' + xhr.status);
+      }
+    };
+    resolve(xhr.send());
+  });
+}
+
+function getIndividualLesson(_id) {
+  xhr.open('GET', 'http://localhost:81/lessons/' + _id);
   xhr.onload = function() {
     if (xhr.status === 200) {
-      lessons = xhr.responseText;
-      lessons = JSON.parse(lessons);
+      console.log('Lesson returned ' + xhr.responseText);
+      lesson = xhr.responseText;
+      lesson = JSON.parse(lesson);
     } else {
       console.log('Request failed.  Returned status of ' + xhr.status);
     }
@@ -217,117 +270,68 @@ app.use('/lessons', lesson);
 app.use('/examples', example);
 app.use('/languages', language);
 
-//** API ROUTING **//
-// get an instance of the router for api routes
-var apiRoutes = express.Router();
-
-// route to authenticate a user (POST http://localhost:81/api/authenticate)
-apiRoutes.post('/authenticate', function(req, res) {
-  // find the user
-  console.log("************");
-  console.log(req.body);
-  User.findOne({
-    name: req.body.name
-  }, function(err, user) {
-
-    if (err) throw err;
-      console.log("WE HAVE AN ERROR");
-    if (!user) {
-      res.json({ success: false, message: 'Authentication failed. User not found.' });
-      console.log('Authentication failed. User not found.');
-    } else if (user) {
-
-      // check if password matches
-      if (user.password != req.body.password) {
-        res.json({ success: false, message: 'Authentication failed. Wrong password.' });
-        console.log('Authentication failed. Wrong password.');
-      } else {
-
-        // if user is found and password is right
-        // create a token with only our given payload
-    // we don't want to pass in the entire user since that has the password
-    const payload = {
-      admin: user.admin     };
-        var token = jwt.sign(payload, app.get('superSecret'), {
-          expiresIn : 60*60*24// expires in 24 hours
-        });
-
-        // return the information including token as JSON
-        res.json({
-          success: true,
-          message: 'Enjoy your token!',
-          token: token
-        });
-      }
-    }
-
+//** BASIC ROUTING **//
+app.get('/', function(req, res , next) {
+  res.render('index', {
+    url: req.url,
+    title: "w3school Assessment"
   });
 });
-//route middleware to verify a token
-apiRoutes.use(function(req, res, next) {
 
-  // check header or url parameters or post parameters for token
-  var token = req.body.token || req.query.token || req.headers['x-access-token'];
-
-  // decode token
-  if (token) {
-
-    // verifies secret and checks exp
-    jwt.verify(token, app.get('superSecret'), function(err, decoded) {       if (err) {
-        return res.json({ success: false, message: 'Failed to authenticate token.' });       } else {
-        // if everything is good, save to request for use in other routes
-        req.decoded = decoded;         next();
-      }
-    });
-
-  } else {
-
-    // if there is no token
-    // return an error
-    return res.status(403).send({
-        success: false,
-        message: 'No token provided.'
-    });
-
+app.get('/login', passport.authenticate('auth0', {
+  clientID: authVar.clientID,
+  domain: authVar.domain,
+  redirectUri: authVar.callbackURL,
+  responseType: 'code',
+  audience: 'https://w3school-assesment.eu.auth0.com/api/v2/',
+  scope: 'openid profile'}),
+  function(req, res) {
+    res.redirect('/');
   }
-});
-// route to show a random message (GET http://localhost:81/api/)
-apiRoutes.get('/', function(req, res) {
-  res.json({ message: 'Testin API route' });
-  console.log('inside API get');
+);
+
+app.get('/logout', function(req, res) {
+  req.logout();
+  res.redirect('/');
 });
 
-// route to return all users (GET http://localhost:8080/api/users)
-apiRoutes.get('/users', function(req, res) {
-  User.find({}, function(err, users) {
-    res.json(users);
-  });
+app.get('/callback',
+  passport.authenticate('auth0', {
+    failureRedirect: '/failure'
+  }),
+  function(req, res) {
+    res.redirect('/')
+  }
+);
+
+app.get('/profile', function(req, res, next) {
+  console.log(req);
+  res.render('/', {
+    user: req.user
+
+  })
 });
-// apply the routes to our application with the prefix /api
-app.use('/api', apiRoutes);
+
+app.get('/failure', function(req, res, next) {
+  res.render('failure');
+})
+
+//** 404 **//
 app.use(function(req, res, next) {
   // respond with html page
   if (req.accepts('html')) {
-    res.render('404', {
-      url: req.url,
-      title: "404"
-    });
+    res.render('404', { url: req.url, title : "404"});
     return;
   }
   // respond with json
   if (req.accepts('json')) {
-    res.send({
-      error: 'Not found'
-    });
+    res.send({ error: 'Not found' });
     return;
   }
   // default to plain-text. send()
   res.type('txt').send('Not found');
 });
 
-app.use(morgan('dev'));
-
-//** BASIC ROUTING **//
 app.listen(port, () => {
   console.log('Server is up and running on port number ' + port);
   console.log('----------------------------------- ');

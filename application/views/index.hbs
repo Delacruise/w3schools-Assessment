@@ -1,1 +1,40 @@
-<h1>w3schools Assessment message</h1>
+<div class="container text-center" style="margin: 10% auto;">
+  {{#if loggedIn}}
+    <h1 class="display-3">NodeJS design requiements.</h1>
+    <div class="alert alert-success" role="alert">
+      Use NodeJs for implementation
+    </div>
+    <div class="alert alert-success" role="alert">
+      Crud operations for ‘Programming Language’ , ‘Lesson’ ,’Example’
+    </div>
+    <div class="alert alert-success" role="alert">
+      Custom Exception handling
+    </div>
+    <div class="alert alert-success" role="alert">
+      Use MongoDB for persistence layer
+    </div>
+    <div class="alert alert-success" role="alert">
+      Service will be stateless
+    </div>
+    <div class="alert alert-success" role="alert">
+      The service should be secured with JWT
+    </div>
+    <div class="alert alert-success" role="alert">
+      Add suitable UI for this business flow using (Saas, Html5)
+    </div>
+  {{else}}
+    <h1 class="display-3">Hello and welcome!</h1>
+    <p>This here is my attempt at completing your assessment. Dont judge to harshly ;).</p>
+
+    <p>
+      Please login with the credentials below by clicking on the link in the top right-hand corner.
+    </p>
+    <div>
+      <hr class="my-2">
+      <p>
+        Email : dummyuser@exmaple.com<br />
+        Password : P@$$w0rd!@#
+      </p>
+    </div>
+  {{/if}}
+</div>

@@ -8,12 +8,11 @@ exports.language_create = function (req, res) {
             introduction: req.body.introduction
         }
     );
-
     language.save(function (err) {
         if (err) {
             return (err);
         }
-        res.send('Language Created successfully')
+        res.redirect('/viewlanguage');
     })
 };
 
